@@ -79,12 +79,8 @@
             return $stmt;
         }
 
-        //POST posts
-        public function create(
-        $title,
-        $author,
-        $body,
-        $category_id) {
+        //Create posts
+        public function create() {
             
             //create the date and format it into string
             $date = new DateTime('now', new DateTimeZone('Europe/Brussels'));
@@ -110,18 +106,65 @@
             $stmt = $this->conn->prepare($query);
 
             //bind parameters SECURITY
-            $stmt->bindParam(':title', $title, PDO::PARAM_STR, 255);
-            $stmt->bindParam(':author', $author, PDO::PARAM_STR, 255);
-            $stmt->bindParam(':body', $body, PDO::PARAM_STR, 1000);
-            $stmt->bindParam(':category_id', $category_id, PDO::PARAM_INT, 11);
+            $stmt->bindParam(':title', $this->title, PDO::PARAM_STR, 255);
+            $stmt->bindParam(':author', $this->author, PDO::PARAM_STR, 255);
+            $stmt->bindParam(':body', $this->body, PDO::PARAM_STR, 1000);
+            $stmt->bindParam(':category_id', $this->category_id, PDO::PARAM_INT, 11);
             $stmt->bindParam(':date', $date);
 
             //execute statement with checking if something goes wrong
+            //if correct
             if ($stmt->execute()) {
                 return true;
             }
-            else {
-                return false;
-            }
+            
+            //if something wrong
+            //if something wrong print error
+            print_r($stmt->errorInfo());
+
+            //return false
+            return false;
         }
+
+        //Update posts
+        public function update() {
+                
+                //create the date and format it into string
+                $date = new DateTime('now', new DateTimeZone('Europe/Brussels'));
+                $date = $date->format('Y-m-d H:i:s');
+    
+                //query
+                $query = 'UPDATE ' . $this->table . ' 
+                SET
+                    title = :title, 
+                    author = :author, 
+                    body = :body, 
+                    category_id = :category_id,
+                    created_at = :date
+                WHERE 
+                    (id = :id)';
+                
+                //prepare statement
+                $stmt = $this->conn->prepare($query);
+    
+                //bind parameters SECURITY
+                $stmt->bindParam(':title', $this->title, PDO::PARAM_STR, 255);
+                $stmt->bindParam(':author', $this->author, PDO::PARAM_STR, 255);
+                $stmt->bindParam(':body', $this->body, PDO::PARAM_STR, 1000);
+                $stmt->bindParam(':category_id', $this->category_id, PDO::PARAM_INT, 11);
+                $stmt->bindParam(':date', $date);
+                $stmt->bindParam(':id', $this->id);
+    
+                //execute statement with checking if something goes wrong
+                //if correct
+                if ($stmt->execute()) {
+                    return true;
+                }
+                //if something wrong print error
+                print_r($stmt->errorInfo());
+
+                //return false
+                return false;
+                
+            }
     }
