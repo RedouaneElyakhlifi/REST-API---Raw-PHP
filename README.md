@@ -1,5 +1,5 @@
 # REST-API---Raw-PHP
-I will make full CRUD API system.
+I will make full CRUD API system. No authentication YET.
 
 REST API without using frameworks such as Symfony or Laravel.
 
