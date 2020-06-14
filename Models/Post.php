@@ -165,6 +165,34 @@
 
                 //return false
                 return false;
-                
+
+        }
+
+        //Delete posts
+        public function delete() {
+
+            //query
+            $query = 'DELETE FROM ' . $this->table . ' 
+            WHERE 
+                (id = :id)';
+            
+            //prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            //bind parameters SECURITY
+            $stmt->bindParam(':id', $this->id);
+
+            //execute statement with checking if something goes wrong
+            //if correct
+            if ($stmt->execute()) {
+                return true;
             }
+            //if something wrong print error
+            print_r($stmt->errorInfo());
+
+            //return false
+            return false;
+            
+        }
+
     }
