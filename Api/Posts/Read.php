@@ -1,7 +1,7 @@
 <?php
     //headers
-    header('Acces-Allow-Origin = *');
-    header('content-type = application/JSON');
+    header('Acces-Control-Allow-Origin = *');
+    header('Content-Type = application/json');
 
     //include needed php classes
     include_once('../../Models/Post.php');

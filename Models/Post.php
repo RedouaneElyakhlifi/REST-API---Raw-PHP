@@ -80,15 +80,15 @@
         }
 
         //POST posts
-        public function write(
+        public function create(
         $title,
         $author,
         $body,
         $category_id) {
             
             //create the date and format it into string
-            $date = new DateTime('now');
-            $date = $date->format('d-m-Y H:s:i');
+            $date = new DateTime('now', new DateTimeZone('Europe/Brussels'));
+            $date = $date->format('Y-m-d H:i:s');
 
             //query
             $query = 'INSERT INTO ' . $this->table . ' (
@@ -116,12 +116,12 @@
             $stmt->bindParam(':category_id', $category_id, PDO::PARAM_INT, 11);
             $stmt->bindParam(':date', $date);
 
-            //execute statement
-            $stmt->execute();
-
-            //redirect to success message
-            $url = '../../Presentation/success.html';
-            header('location:' . $url);
-
+            //execute statement with checking if something goes wrong
+            if ($stmt->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }

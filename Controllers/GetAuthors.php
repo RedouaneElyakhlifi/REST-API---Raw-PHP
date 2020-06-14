@@ -12,7 +12,7 @@
 
         //initiate category modal
         $post = new Post($db);
-
+        
         //get all categories
         $result = $post->read();
 
