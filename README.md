@@ -9,6 +9,9 @@ And I made some frontend to navigate through the read_sameAuthor.php API call.
 
 Rest of the API calls have been tested with Postman.
 
-At the moment we have Create, Read and Update.
+At the moment we have full CRUD of posts.
 
-Working on Delete.
+I will do the same for categories.
+
+After both are finished i will insert authentication.
+
