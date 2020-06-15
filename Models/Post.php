@@ -47,7 +47,7 @@
             return $stmt;
         }
 
-        public function read_sameAuthor($author) {
+        public function read_sameAuthor() {
             //query
             $query = 'SELECT
                 p.id,
@@ -70,7 +70,7 @@
             $stmt = $this->conn->prepare($query);
 
             //bind parameters SECURITY
-            $stmt->bindParam(':author', $author, PDO::PARAM_STR, 255);
+            $stmt->bindParam(':author', $this->author, PDO::PARAM_STR, 255);
 
             //execute statement
             $stmt->execute();
@@ -81,7 +81,6 @@
 
         //Create posts
         public function create() {
-            
             //create the date and format it into string
             $date = new DateTime('now', new DateTimeZone('Europe/Brussels'));
             $date = $date->format('Y-m-d H:i:s');
@@ -128,7 +127,6 @@
 
         //Update posts
         public function update() {
-                
                 //create the date and format it into string
                 $date = new DateTime('now', new DateTimeZone('Europe/Brussels'));
                 $date = $date->format('Y-m-d H:i:s');
@@ -170,7 +168,6 @@
 
         //Delete posts
         public function delete() {
-
             //query
             $query = 'DELETE FROM ' . $this->table . ' 
             WHERE 
