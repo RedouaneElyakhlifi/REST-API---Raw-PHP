@@ -3,15 +3,13 @@ I will make full CRUD API system. No authentication YET.
 
 REST API without using frameworks such as Symfony or Laravel.
 
-I also made a controller to get all authors from database to put in a select form as options to choose from.
+- API calls have been tested with Postman.
 
-And I made some frontend to navigate through the read_sameAuthor.php API call.
+- CRUD for both Posts and Categories.
 
-Rest of the API calls have been tested with Postman.
+- General API call function.
 
-At the moment we have full CRUD of posts.
+- 2 controllers: read all posts and read all categories.
 
-I will do the same for categories.
-
-After both are finished i will insert authentication.
+Upcoming is adding an authentication. (api key)
 
