@@ -179,16 +179,11 @@
             //bind parameters SECURITY
             $stmt->bindParam(':id', $this->id);
 
-            //execute statement with checking if something goes wrong
-            //if correct
-            if ($stmt->execute()) {
-                return true;
-            }
-            //if something wrong print error
-            print_r($stmt->errorInfo());
+            //execute statement
+            $stmt->execute();
 
-            //return false
-            return false;
+            //return result
+            return $stmt;
             
         }
 

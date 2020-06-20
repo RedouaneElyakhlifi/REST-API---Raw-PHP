@@ -6,6 +6,15 @@
     //include needed php classes
     include_once('../../Models/Category.php');
     include_once('../../Config/Database.php');
+    include_once('../Authentication/Authenticate.php');
+
+    //Authenticate
+    $authenticate = new Authenticate();
+    if(!$authenticate->verify()) {
+        echo json_encode(array('message' => 'authentication failed'));
+        
+        return;
+    }
 
     //initiate the database connection
     $db = new Database();
